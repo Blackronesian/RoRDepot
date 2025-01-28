@@ -27,8 +27,10 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product,
           notice: "Product was successfully created." }
-        format.json { render :show, status: :created,
-          location: @product }
+        format.json { render :show, status: :ok, location: @product }
+
+    @product.broadcast_replace_later_to "products",
+      partial: "store/product"
       else
         format.html { render :new,
           status: :unprocessable_entity }
