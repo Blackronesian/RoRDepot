@@ -1,0 +1,7 @@
+class ChangeCartIdAndOrderIdTypes < ActiveRecord::Migration[7.2]
+  def change
+    # Change cart_id to match the orders.id type (assuming it's an integer)
+    change_column :line_items, :cart_id, :bigint, null: true
+    change_column :line_items, :order_id, :bigint, null: true
+  end
+end
